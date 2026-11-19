@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, writeFile, rm, symlink, link } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, rm, symlink, link, realpath } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -39,7 +39,7 @@ test('selected export copies Markdown and referenced resources and leaves the va
   const result = await runner.export({ vault, destination, docIds: ['notes/hello.md'] }, { onProgress: (p) => updates.push(p) });
   assert.equal(result.outcome, 'completed');
   assert.equal(result.exportedDocs, 1);
-  assert.equal(result.output, destination);
+  assert.equal(await realpath(result.output), await realpath(destination));
   assert.match(await readFile(path.join(destination, 'notes/hello.md'), 'utf8'), /_resources\/assets\/picture.png/);
   assert.deepEqual(await readFile(path.join(destination, '_resources/assets/picture.png')), Buffer.from([137,80,78,71]));
   assert.equal(await readFile(path.join(vault, 'notes/hello.md'), 'utf8'), '# Hello\n\n![image](../assets/picture.png)\n');
