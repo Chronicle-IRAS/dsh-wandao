@@ -42,7 +42,7 @@ class CheckpointTests(unittest.TestCase):
             request['fields']['retry_failed'] = True
             _, second = bridge.prepare(request, provider, plugin, source)
             self.assertIn('--resume', first)
-            self.assertIn('--checkpoint-file=' + str(root / 'state' / 'feishu' / 'checkpoint.sqlite'), first)
+            self.assertIn('--checkpoint-file=' + str(root.resolve() / 'state' / 'feishu' / 'checkpoint.sqlite'), first)
             self.assertEqual(next(a for a in first if a.startswith('--checkpoint-task-id=')), next(a for a in second if a.startswith('--checkpoint-task-id=')))
 
     def test_credentials_are_not_part_of_os_argv_or_preparation_errors(self):
