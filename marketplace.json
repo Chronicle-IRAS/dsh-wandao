@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "title": { "en": "Wandao Plugins", "zh": "万能导插件索引" },
+  "plugins": [
+    {
+      "name": "@chronicle-iras/dsh-wandao",
+      "title": { "en": "Wandao", "zh": "万能导" },
+      "description": {
+        "en": "Export, back up, and migrate knowledge bases with the bundled Wandao engine.",
+        "zh": "在 DeepSeek Harness 中导出、备份和迁移知识库，内置万能导迁移后端。"
+      },
+      "author": "Chronicle-IRAS",
+      "repository": { "url": "https://github.com/Chronicle-IRAS/dsh-wandao" },
+      "metadata": { "keywords": ["dsh-plugin", "dsh-wandao", "markdown", "迁移"] },
+      "dist-tags": { "latest": "0.3.5" },
+      "versions": [
+        {
+          "version": "0.3.5",
+          "publishTimestamp": 1795081290,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Chronicle-IRAS/dsh-wandao",
+            "commit": "89dbdabac781bfd669c870b44a863c94121dbbbf"
+          },
+          "engines": { "dsh": "0.2.2-rc.1" }
+        }
+      ]
+    }
+  ]
+}
