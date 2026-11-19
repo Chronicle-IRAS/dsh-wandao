@@ -1,0 +1,95 @@
+{
+  "name": "@chronicle-iras/dsh-wandao",
+  "version": "0.3.5",
+  "description": "Bundled Wandao document migration engine for DeepSeek Harness.",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "keywords": ["dsh-plugin", "wandao", "万能导", "markdown", "migration"],
+  "homepage": "https://github.com/Chronicle-IRAS/dsh-wandao",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chronicle-IRAS/dsh-wandao.git"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "runtime",
+    "python",
+    "scripts",
+    "cordis.patch.yml",
+    "UPSTREAM.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "dsh": "0.2.2-rc.1"
+  },
+  "scripts": {
+    "bundle:runtime": "node scripts/bundle-runtime.mjs",
+    "build": "npm run bundle:runtime && tsc && node scripts/build-client.mjs",
+    "check": "tsc --noEmit",
+    "pretest": "npm run bundle:runtime",
+    "test": "tsx --test test/*.test.ts",
+    "test:python": "python -B -m unittest discover -s python -p test_*.py",
+    "test:browser": "playwright test",
+    "test:package": "npm run build && node scripts/test-package.mjs",
+    "pack:release": "npm run build && npm pack --ignore-scripts"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-jobs": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.1"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "~3.19.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.1.0",
+    "@deepseek-ai/dsh-client-connection": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-layout": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-sidebar": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-client-ui-slots": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-jobs": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-jobs-local": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-system-prompt": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.1",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "esbuild": "^0.28.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
