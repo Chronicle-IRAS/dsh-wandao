@@ -1,6 +1,7 @@
 # Wandao for DeepSeek Harness
 
-万能导是基于 [Wandao](https://github.com/tllovesxs/wandao) 改造的第三方 DSH 插件。
+原版 [Wandao（万能导）](https://github.com/tllovesxs/wandao) 由 [tllovesxs](https://github.com/tllovesxs) 发起，并由 [Wandao 贡献者](https://github.com/tllovesxs/wandao/graphs/contributors) 共同开发。
+这个第三方 DSH 插件由 [Chronicle-IRAS](https://github.com/Chronicle-IRAS) 适配和维护。
 本仓库保留上游版权和 AGPL-3.0-only 许可。随包的 Python 源码来自 [Wandao 1.5.3](https://github.com/tllovesxs/wandao/tree/4cd3436d8320b012ed004666c748778584573772)，
 上游提交见 [UPSTREAM.json](UPSTREAM.json)。本仓库新增 DSH 适配层、Web 操作页、Python 协议桥接与打包测试。
 
